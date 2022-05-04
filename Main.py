@@ -1,5 +1,7 @@
 # Jayden McCormick
-# My project is a tool for selecting hardware for building a computer.
+""" This is my COP 1500 integration project for Spring 2022.
+My project is a basic tool for selecting hardware for building a computer. """
+
 
 __author__ = "Jayden McCormick"
 
@@ -7,12 +9,33 @@ import time
 
 
 def pause():
-    for _ in range(3):
+    """
+    Used to make a short pause for the user to read what is on screen without
+    getting overwhelmed by a ton of text all at once.
+    """
+    for timer in range(3):
         print("", end="")
         time.sleep(0.5)
 
 
 def partpicker():
+    """
+    This function is what holds all of the actual math and input statements
+    to generate what parts the user may want to consider building with.
+    """
+    cpubrand = 0
+    amdchoice = 0
+    cpuchoice = 0
+    cpuprice = 0
+    cpu = 0
+    cpucost = 0
+    coolercost = 0
+    coolerreq = 0
+    totalcost = 0
+    wifireq = 0
+    mbchoice = 0
+    # All above are used to prevent errors saying they may be referenced before
+    # assignment, even though the way the code is set up it would never happen.
     validation = True
     while validation:
         cpubrand = input("Choose your cpu by entering '1' or '2': ")
@@ -517,9 +540,18 @@ def partpicker():
         print("You have enough money saved for this build!")
         print("You have ", (-pricediff), sep='', end=' ')
         print("extra.")
+    if coolerreq == 5:
+        return coolerreq + mbchoice + amdchoice + cpuchoice
+        #  Impossible to occur, but used to remove warnings that the
+        #  above variables may not be used since they were used,
+        #  but hidden in if/elif statements (im assuming)
 
 
 def required():
+    """
+    This function holds everything that was required for the project, which
+    I couldn't naturally fit into the theme.
+    """
     validation = True
     while validation:
         exponent = input("Enter a whole number above 0 to be squared: ")
@@ -580,8 +612,9 @@ def required():
 
 
 def main():
-    amdchoice = 0
-    cpuchoice = 0
+    """
+    The main function is the function that calls upon all the other functions.
+    """
     # Setting some future variables as 0s, to ensure everything runs smoothly
     hello = "Hello "
     print(hello * 2)  # The only use I could think of, for now at least,
@@ -611,15 +644,22 @@ def main():
     pause()
     partpicker()
     pause()
-    print("You have reached the end of sprint 2.")
+    print("You have reached the end of my project!")
+    print("I happened to have all things necessary for the assignment")
+    print("before having to go through and research chipsets and plug them in "
+          "(sigh of relief) so I'm not sure if I'll come back to this or not")
     pause()
-    exit = int(input("Enter '1' to exit: "))
-    if exit == 1:
-        quit()
-    else:
-        exit = int(input("Enter '1' to exit: "))
-        if not (exit != 1) or exit != 1:
-            quit()
+    validation = True
+    while validation:
+        adios = input("Enter '1' to exit: ")
+        try:
+            if int(adios) == 1:
+                validation = False
+                quit()
+            else:
+                print("I said, Enter '1' to exit: ")
+        except ValueError:
+            print("It's too late to try to crash the program!")
     # Shows ending for now, quits program.
 
 
